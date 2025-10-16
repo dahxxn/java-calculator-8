@@ -12,4 +12,9 @@ public class Delimiters {
         delimiters.add(':');
     }
 
+    public void addCustomDelimiter(String delimiter) {
+        delimiters.add(delimiter.charAt(0));
+    }
+
+
 }

@@ -24,6 +24,7 @@ public class CalculatorController {
 
         if (calculatorService.hasCustomHeader(rawExpression)) {
             String customDelimiter = calculatorService.extractCustomDelimiter(rawExpression);
+            delimiters.addCustomDelimiter(customDelimiter);
         }
 
     }
