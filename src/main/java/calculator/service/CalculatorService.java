@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class CalculatorService {
     private static final String CUSTOM_HEADER_STRING_REGEX = "^//(.)\\\\n(.*)$";
     private static final Pattern CUSTOM_HEADER_PATTERN = Pattern.compile(CUSTOM_HEADER_STRING_REGEX);
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("\\d+");
 
     public boolean hasCustomHeader(String rawExpression) {
         return CUSTOM_HEADER_PATTERN.matcher(rawExpression).matches();
@@ -24,6 +25,10 @@ public class CalculatorService {
     public String[] parsingCalculation(String rawExpression, String allDelimiters) {
         String calculation = extractCalculation(rawExpression);
         return calculation.split(allDelimiters);
+    }
+
+    public boolean isNumber(String calculationPart) {
+        return NUMBER_PATTERN.matcher(calculationPart).matches();
     }
 
 }
