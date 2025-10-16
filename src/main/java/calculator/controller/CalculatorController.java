@@ -30,12 +30,15 @@ public class CalculatorController {
         String allDelimiters = delimiters.getAllDelimiters();
         String[] calculationParts = calculatorService.parsingCalculation(rawExpression, allDelimiters);
 
+        int result = 0;
         for (String calculationPart : calculationParts) {
             if (!calculatorService.isNumber(calculationPart)) {
                 throw new IllegalArgumentException();
             }
 
             int number = Integer.parseInt(calculationPart);
+            result += number;
         }
+
     }
 }
