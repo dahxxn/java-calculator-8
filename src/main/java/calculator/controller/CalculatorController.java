@@ -26,8 +26,9 @@ public class CalculatorController {
             String customDelimiter = calculatorService.extractCustomDelimiter(rawExpression);
             delimiters.addCustomDelimiter(customDelimiter);
         }
-        
+
         String allDelimiters = delimiters.getAllDelimiters();
+        String[] calculationParts = calculatorService.parsingCalculation(rawExpression, allDelimiters);
 
     }
 }

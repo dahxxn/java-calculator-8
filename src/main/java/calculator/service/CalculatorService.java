@@ -16,4 +16,14 @@ public class CalculatorService {
         return matcher.find() ? matcher.group(1) : null;
     }
 
+    public String extractCalculation(String rawExpression) {
+        Matcher matcher = CUSTOM_HEADER_PATTERN.matcher(rawExpression);
+        return matcher.find() ? matcher.group(2) : rawExpression;
+    }
+
+    public String[] parsingCalculation(String rawExpression, String allDelimiters) {
+        String calculation = extractCalculation(rawExpression);
+        return calculation.split(allDelimiters);
+    }
+
 }
