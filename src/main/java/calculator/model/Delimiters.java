@@ -16,5 +16,15 @@ public class Delimiters {
         delimiters.add(delimiter.charAt(0));
     }
 
+    public String getAllDelimiters() {
+        StringBuilder stringBuilder = new StringBuilder("[");
+
+        for (Character character : delimiters) {
+            stringBuilder.append(character);
+        }
+        stringBuilder.append("]");
+
+        return stringBuilder.toString();
+    }
 
 }
