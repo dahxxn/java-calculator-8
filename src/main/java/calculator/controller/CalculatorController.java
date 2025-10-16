@@ -23,7 +23,7 @@ public class CalculatorController {
         String rawExpression = inputView.readRawExpression();
 
         if (calculatorService.hasCustomHeader(rawExpression)) {
-            System.out.println("Start with custom regex");
+            String customDelimiter = calculatorService.extractCustomDelimiter(rawExpression);
         }
 
     }

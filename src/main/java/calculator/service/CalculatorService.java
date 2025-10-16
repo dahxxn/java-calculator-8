@@ -1,5 +1,6 @@
 package calculator.service;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CalculatorService {
@@ -8,6 +9,11 @@ public class CalculatorService {
 
     public boolean hasCustomHeader(String rawExpression) {
         return CUSTOM_HEADER_PATTERN.matcher(rawExpression).matches();
+    }
+
+    public String extractCustomDelimiter(String rawExpression) {
+        Matcher matcher = CUSTOM_HEADER_PATTERN.matcher(rawExpression);
+        return matcher.find() ? matcher.group(1) : null;
     }
 
 }
