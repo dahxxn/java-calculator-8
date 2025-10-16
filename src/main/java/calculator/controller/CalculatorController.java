@@ -40,5 +40,7 @@ public class CalculatorController {
             result += number;
         }
 
+        outputView.showResult(result);
+
     }
 }
