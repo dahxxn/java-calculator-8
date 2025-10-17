@@ -22,8 +22,8 @@ public class CalculatorController {
         outputView.showInputMessage();
         String rawExpression = inputView.readRawExpression();
 
-        if (calculatorService.hasCustomHeader(rawExpression)) {
-            String customDelimiter = calculatorService.extractCustomDelimiter(rawExpression);
+        String customDelimiter = calculatorService.extractCustomDelimiter(rawExpression);
+        if (customDelimiter != null) {
             delimiters.addCustomDelimiter(customDelimiter);
         }
 

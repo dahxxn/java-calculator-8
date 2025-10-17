@@ -4,17 +4,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CalculatorService {
-    private static final String CUSTOM_HEADER_STRING_REGEX = "^//(.)\\\\n(.*)$";
+    private static final String CUSTOM_HEADER_STRING_REGEX = "^//(.*)\\\\n(.*)$";
     private static final Pattern CUSTOM_HEADER_PATTERN = Pattern.compile(CUSTOM_HEADER_STRING_REGEX);
     private static final Pattern NUMBER_PATTERN = Pattern.compile("\\d+");
 
-    public boolean hasCustomHeader(String rawExpression) {
-        return CUSTOM_HEADER_PATTERN.matcher(rawExpression).matches();
+    private String checkCustomHeader(String rawExpression) {
+        Matcher matcher = CUSTOM_HEADER_PATTERN.matcher(rawExpression);
+        return matcher.matches() ? matcher.group(1) : null;
     }
 
     public String extractCustomDelimiter(String rawExpression) {
-        Matcher matcher = CUSTOM_HEADER_PATTERN.matcher(rawExpression);
-        return matcher.find() ? matcher.group(1) : null;
+        String customDelimiter = checkCustomHeader(rawExpression);
+        if (customDelimiter != null) {
+            validateCustomDelimiter(customDelimiter);
+        }
+
+        return customDelimiter;
+    }
+
+    public void validateCustomDelimiter(String customDelimiter) {
+        checkCustomDelimiterEmpty(customDelimiter);
+
+
+    }
+
+    private void checkCustomDelimiterEmpty(String customDelimiter) {
+        if (customDelimiter.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String extractCalculation(String rawExpression) {
@@ -27,8 +44,8 @@ public class CalculatorService {
         return calculation.split(allDelimiters);
     }
 
-    public boolean isNumber(String calculationPart) {
-        return NUMBER_PATTERN.matcher(calculationPart).matches();
+    public boolean isNumber(String valueToCheck) {
+        return NUMBER_PATTERN.matcher(valueToCheck).matches();
     }
 
 }
