@@ -25,7 +25,7 @@ public class CalculatorService {
     public void validateCustomDelimiter(String customDelimiter) {
         checkCustomDelimiterEmpty(customDelimiter);
         checkCustomDelimiterMultiple(customDelimiter);
-
+        checkCustomDelimiterNumber(customDelimiter);
     }
 
     private void checkCustomDelimiterEmpty(String customDelimiter) {
@@ -36,6 +36,12 @@ public class CalculatorService {
 
     private void checkCustomDelimiterMultiple(String customDelimiter) {
         if (customDelimiter.length() > 2) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkCustomDelimiterNumber(String customDelimiter) {
+        if (isNumber(customDelimiter)) {
             throw new IllegalArgumentException();
         }
     }
