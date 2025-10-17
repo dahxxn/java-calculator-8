@@ -24,12 +24,18 @@ public class CalculatorService {
 
     public void validateCustomDelimiter(String customDelimiter) {
         checkCustomDelimiterEmpty(customDelimiter);
-
+        checkCustomDelimiterMultiple(customDelimiter);
 
     }
 
     private void checkCustomDelimiterEmpty(String customDelimiter) {
         if (customDelimiter.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkCustomDelimiterMultiple(String customDelimiter) {
+        if (customDelimiter.length() > 2) {
             throw new IllegalArgumentException();
         }
     }
