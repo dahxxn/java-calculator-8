@@ -56,7 +56,13 @@ public class CalculatorService {
         return calculation.split(allDelimiters);
     }
 
-    public boolean isNumber(String valueToCheck) {
+    public void validateCalculationPart(String calculationPart) {
+        if (!isNumber(calculationPart)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isNumber(String valueToCheck) {
         return NUMBER_PATTERN.matcher(valueToCheck).matches();
     }
 

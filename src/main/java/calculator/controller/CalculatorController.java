@@ -32,9 +32,7 @@ public class CalculatorController {
 
         int result = 0;
         for (String calculationPart : calculationParts) {
-            if (!calculatorService.isNumber(calculationPart)) {
-                throw new IllegalArgumentException();
-            }
+            calculatorService.validateCalculationPart(calculationPart);
 
             int number = Integer.parseInt(calculationPart);
             result += number;
