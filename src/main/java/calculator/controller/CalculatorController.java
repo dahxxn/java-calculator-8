@@ -19,15 +19,28 @@ public class CalculatorController {
     }
 
     public void run() {
-        outputView.showInputMessage();
-        String rawExpression = inputView.readRawExpression();
+        String rawExpression = readRawExpression();
+        String allDelimiters = getDelimiters(rawExpression);
 
+        int result = calculate(rawExpression, allDelimiters);
+        outputView.showResult(result);
+    }
+
+    private String readRawExpression() {
+        outputView.showInputMessage();
+        return inputView.readRawExpression();
+    }
+
+    private String getDelimiters(String rawExpression) {
         String customDelimiter = calculatorService.extractCustomDelimiter(rawExpression);
         if (customDelimiter != null) {
             delimiters.addCustomDelimiter(customDelimiter);
         }
 
-        String allDelimiters = delimiters.getAllDelimiters();
+        return delimiters.getAllDelimiters();
+    }
+
+    private int calculate(String rawExpression, String allDelimiters) {
         String[] calculationParts = calculatorService.parsingCalculation(rawExpression, allDelimiters);
 
         int result = 0;
@@ -35,8 +48,6 @@ public class CalculatorController {
             int number = calculatorService.convertToNumber(calculationPart);
             result += number;
         }
-
-        outputView.showResult(result);
-
+        return result;
     }
 }
