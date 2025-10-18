@@ -56,10 +56,14 @@ public class CalculatorService {
         return calculation.split(allDelimiters);
     }
 
-    public void validateCalculationPart(String calculationPart) {
+    public int convertToNumber(String calculationPart) {
+        if (calculationPart.isEmpty()) {
+            return 0;
+        }
         if (!isNumber(calculationPart)) {
             throw new IllegalArgumentException();
         }
+        return Integer.parseInt(calculationPart);
     }
 
     private boolean isNumber(String valueToCheck) {

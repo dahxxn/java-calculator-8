@@ -8,7 +8,7 @@ import calculator.view.OutputView;
 public class CalculatorController {
     private final OutputView outputView;
     private final InputView inputView;
-    private static Delimiters delimiters;
+    private final Delimiters delimiters;
     private final CalculatorService calculatorService;
 
     public CalculatorController(OutputView outputView, InputView inputView, CalculatorService calculatorService) {
@@ -32,9 +32,7 @@ public class CalculatorController {
 
         int result = 0;
         for (String calculationPart : calculationParts) {
-            calculatorService.validateCalculationPart(calculationPart);
-
-            int number = Integer.parseInt(calculationPart);
+            int number = calculatorService.convertToNumber(calculationPart);
             result += number;
         }
 
