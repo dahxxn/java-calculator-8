@@ -6,10 +6,10 @@ import calculator.view.InputView;
 import calculator.view.OutputView;
 
 public class CalculatorController {
-    private static OutputView outputView;
-    private static InputView inputView;
+    private final OutputView outputView;
+    private final InputView inputView;
     private static Delimiters delimiters;
-    private static CalculatorService calculatorService;
+    private final CalculatorService calculatorService;
 
     public CalculatorController(OutputView outputView, InputView inputView, CalculatorService calculatorService) {
         this.outputView = outputView;
