@@ -30,19 +30,19 @@ public class CalculatorService {
 
     private void checkCustomDelimiterEmpty(String customDelimiter) {
         if (customDelimiter.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Custom delimiter cannot be empty.");
         }
     }
 
     private void checkCustomDelimiterMultiple(String customDelimiter) {
         if (customDelimiter.length() > 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Custom delimiter length must not exceed 2 characters.");
         }
     }
 
     private void checkCustomDelimiterNumber(String customDelimiter) {
         if (isNumber(customDelimiter)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Custom delimiter cannot be a numeric value.");
         }
     }
 
@@ -61,7 +61,7 @@ public class CalculatorService {
             return 0;
         }
         if (!isNumber(calculationPart)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Invalid number format: " + calculationPart);
         }
         return Integer.parseInt(calculationPart);
     }
