@@ -58,16 +58,14 @@ class CalculatorServiceTest {
                 .hasMessage("Custom delimiter cannot be empty.");
     }
 
-    @Test
-    @DisplayName("커스텀 구분자가 2글자를 초과하면 예외가 발생한다")
-    void 커스텀구분자_길이초과_예외() {
-        // given
-        String longDelimiter = "abc";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"ab", "abc", "abcd"})
+    @DisplayName("커스텀 구분자가 2글자 이상이면 예외가 발생한다")
+    void 커스텀구분자_2글자이상_예외(String longDelimiter) {
         // when & then
         assertThatThrownBy(() -> calculatorService.validateCustomDelimiter(longDelimiter))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Custom delimiter length must not exceed 2 characters.");
+                .hasMessage("Custom delimiter length must not exceed 1 characters.");
     }
 
     @ParameterizedTest

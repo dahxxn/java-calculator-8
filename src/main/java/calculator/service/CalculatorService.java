@@ -35,8 +35,8 @@ public class CalculatorService {
     }
 
     private void checkCustomDelimiterMultiple(String customDelimiter) {
-        if (customDelimiter.length() > 2) {
-            throw new IllegalArgumentException("Custom delimiter length must not exceed 2 characters.");
+        if (customDelimiter.length() >= 2) {
+            throw new IllegalArgumentException("Custom delimiter length must not exceed 1 characters.");
         }
     }
 
